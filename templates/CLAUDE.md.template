@@ -1,0 +1,106 @@
+# `<Vault Name>`
+
+A short paragraph describing what this vault is — a unified Obsidian vault, a OneDrive folder of markdown, a git-tracked notes directory, whatever. The point: **one mental model for filing, one schema for metadata, one rule for autonomy.**
+
+## The single rule
+
+When you create or file something, ask: **what venture/engagement/project does this belong to?** File it inside that folder. Meeting notes, research, deliverables, learnings — all of it lives nested under the venture, not in a cross-cutting top-level folder.
+
+If it doesn't belong to a single venture, it belongs in one of the cross-cutting folders below — and those are smaller, personal domains, not generic catch-alls.
+
+## Folder structure
+
+```
+<top-level-1>/                 → <description — what question does this folder answer?>
+  <subfolder-A>/               → <each venture/engagement gets its own subfolder>
+    _learnings.md              → Domain knowledge accumulated across sessions
+    Meetings/                  → Per-venture meeting notes (dated)
+    Research/                  → Research specific to this venture
+    Deliverables/              → Artifacts shipped to stakeholders
+
+<top-level-2>/                 → <e.g., Ideas/ — early-stage concepts>
+<top-level-3>/                 → <e.g., Writing/ — essays and creative writing>
+<top-level-4>/                 → <e.g., Personal/ — private content>
+<top-level-5>/                 → <e.g., AI Toolkit/ — agent references, session history>
+<top-level-6>/                 → <e.g., Reading/ — Readwise sync or imported content>
+
+CLAUDE.md                      → This file (vault rules)
+log.md                         → Append-only operation log
+```
+
+Adjust to your actual structure. Don't keep folders that don't carry meaning — empty taxonomies rot fastest.
+
+## Inside each venture/engagement folder
+
+A well-formed venture folder looks like:
+
+```
+<top-level>/<venture-name>/
+  _learnings.md              → REQUIRED. Domain knowledge accumulated across sessions
+  <venture-summary>.md       → Hypothesis brief / core doc
+  Meetings/                  → Per-venture meeting notes (dated)
+  Research/                  → Market / user research specific to this venture
+  Deliverables/              → Artifacts shipped to stakeholders
+```
+
+Not every venture needs every subfolder on day one. **`_learnings.md` is the minimum.** The rest accrete as work happens.
+
+## Knowledge Router
+
+If you use the [ai-knowledge-system](https://github.com/derekcedarbaum2/ai-knowledge-system) tier-2/3 pattern, your agent reads the Knowledge Router in `MEMORY.md` to find the right `_learnings.md` for the current task.
+
+## YAML frontmatter schema
+
+See `frontmatter-schema.md` in this repo. Every `.md` file in the vault should open with:
+
+```yaml
+---
+title: <document title>
+type: <prd | reference | meeting | cta | research | concept | session | essay | idea>
+status: <draft | active | approved | archived>
+classification: <public | internal | confidential | unclassified>
+created: YYYY-MM-DD
+updated: YYYY-MM-DD
+author: "<your name>"
+tags: []
+---
+```
+
+Optional fields: `product`, `program`, `related: [[wiki-links]]`, `source`, `owner`, `due`.
+
+## How to work in this vault
+
+### Core rules
+1. **Orient first** — scan the relevant venture folder before making changes.
+2. **File inside the venture** — don't create cross-cutting folders for things that belong to a single venture.
+3. **Maintain confidentiality** — respect the `classification` field. Don't move `confidential` content into `public` folders.
+4. **Be precise** — exact names, dates, figures.
+5. **Preserve voice** — never sanitize creative or political writing without being asked.
+6. **Track decisions** — note who decided what, why, when, in the venture's `_learnings.md` under Key Decisions.
+7. **Date everything** — include dates on meetings, deliverables, decisions.
+8. **Update, don't duplicate** — if information exists, update it rather than creating a new page.
+9. **Depth over breadth** — develop ideas fully rather than collecting shallow notes.
+10. **Frontmatter first** — add YAML frontmatter when creating any new `.md`. Backfill when editing old files.
+
+### Connections and linking
+- Use `[[wikilinks]]` for internal vault links.
+- When processing new content, suggest connections to existing notes.
+- Add links with context — explain *why* notes relate to each other.
+- Every learning in `_learnings.md` cites its source session via `[[session-id]]`.
+
+### Autonomy
+- Make small changes (typo fixes, dates, minor reorg) without asking.
+- For structural changes (moving files between folders, merging notes, creating new organizational schemes), describe the plan first.
+- When in doubt, ask.
+
+### Writing in this vault
+- Match the tone of the folder. Professional folders are professional. Creative folders are raw. Personal folders are private. Don't homogenize.
+- Default to long-form depth over bullet-point summaries when the topic deserves it.
+
+## Operation log
+
+All vault-modifying operations are logged in `log.md` at vault root — append-only, grep-friendly. The agent should append a one-line entry whenever it creates, deletes, or moves a file.
+
+---
+
+*This template is from [vault-conventions](https://github.com/derekcedarbaum2/vault-conventions). Replace placeholders, delete sections that don't apply, and commit.*
