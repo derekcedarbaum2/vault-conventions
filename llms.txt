@@ -1,0 +1,33 @@
+# vault-conventions
+
+> Vault structure, frontmatter discipline, and hygiene tooling for markdown knowledge bases that AI agents read from and write to. CLAUDE.md template + YAML schema + /prune-memory skill + SessionEnd archive hook + concurrency lockdir pattern.
+
+The opinionated conventions that make a Markdown vault work as agent memory: every artifact has one home, every file has frontmatter, every venture has a `_learnings.md`, every session archives automatically.
+
+## Docs
+
+- [README](https://raw.githubusercontent.com/derekcedarbaum2/vault-conventions/main/README.md): the vault model, the conventions, why each exists.
+- [AGENTS.md](https://raw.githubusercontent.com/derekcedarbaum2/vault-conventions/main/AGENTS.md): operating protocol for agents installing this for an operator.
+
+## Templates
+
+- [CLAUDE.md template](https://raw.githubusercontent.com/derekcedarbaum2/vault-conventions/main/templates/CLAUDE.md): vault-level CLAUDE.md (folder map, conventions, router pointer).
+- [_learnings.template.md](https://raw.githubusercontent.com/derekcedarbaum2/vault-conventions/main/templates/_learnings.template.md): per-folder domain file template.
+
+## Skills
+
+- [prune-memory SKILL.md](https://raw.githubusercontent.com/derekcedarbaum2/vault-conventions/main/skills/prune-memory/SKILL.md): periodic memory pruning, enforces 200-line cap on MEMORY.md.
+
+## Hooks
+
+- [archive-session.sh](https://raw.githubusercontent.com/derekcedarbaum2/vault-conventions/main/hooks/archive-session.sh): SessionEnd hook, auto-saves transcripts to vault.
+
+## Related
+
+- [ai-knowledge-system](https://github.com/derekcedarbaum2/ai-knowledge-system): memory pattern these conventions support.
+- [vault-lint](https://github.com/derekcedarbaum2/vault-lint): automated vault hygiene audit.
+- [agentic-architecture-map](https://github.com/derekcedarbaum2/agentic-architecture-map): internal architecture tracking that pairs with these conventions.
+
+## Optional
+
+- [LICENSE](https://raw.githubusercontent.com/derekcedarbaum2/vault-conventions/main/LICENSE): MIT.
