@@ -1,9 +1,9 @@
-# Vault Conventions for AI Agents
+# vault-conventions · Anti-rot rules for AI-agent vaults
 
 > **Want to install the whole 12-repo ecosystem?** Paste [this prompt](https://github.com/derekcedarbaum2/claude-code-setup/blob/main/INSTALL-PROMPT.md) into your Claude Code or Codex session — it interviews you, installs in phases, runs smoke tests, and pauses for confirmation between phases. Or browse the [ECOSYSTEM map](https://github.com/derekcedarbaum2/claude-code-setup/blob/main/ECOSYSTEM.md) first.
 
 
-**Rules and tools that keep an AI agent's Markdown knowledge base from rotting over time.**
+**Rules and tools that keep an AI agent's Markdown knowledge base from rotting over time.** Frontmatter schema, folder discipline, the SessionEnd archive hook, the concurrency lockdir pattern. The write-time discipline half of the [writing-layer-over-retrieval-layer thesis](https://github.com/derekcedarbaum2/claude-code-setup#the-thesis-writing-layer-over-retrieval-layer).
 
 > **New to Claude Code?** [Claude Code](https://docs.anthropic.com/claude/code) is Anthropic's command-line AI agent. A "vault" is a folder of Markdown files that the agent reads and writes — typically [Obsidian](https://obsidian.md). See the [ECOSYSTEM map](https://github.com/derekcedarbaum2/claude-code-setup/blob/main/ECOSYSTEM.md) for the full system overview + onboarding sequence. Vocabulary used here (vault, frontmatter, `_learnings.md`, hook, etc.) is defined in the [glossary](https://github.com/derekcedarbaum2/claude-code-setup/blob/main/GLOSSARY.md).
 
