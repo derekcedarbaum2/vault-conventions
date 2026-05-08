@@ -1,8 +1,20 @@
 # Vault Conventions for AI Agents
 
-**Vault structure, frontmatter discipline, and hygiene tooling for markdown knowledge bases that AI agents read from and write to.**
+**Rules and tools that keep an AI agent's Markdown knowledge base from rotting over time.**
 
-The vault is where your agent's long-term knowledge lives. Without conventions, it rots — orphans, broken links, conflicting `_learnings.md` files, a `MEMORY.md` that crept past 200 lines. With conventions, it compounds. This repo is the hygiene layer.
+> **New to Claude Code?** [Claude Code](https://docs.anthropic.com/claude/code) is Anthropic's command-line AI agent. A "vault" is a folder of Markdown files that the agent reads and writes — typically [Obsidian](https://obsidian.md). Vocabulary used here (vault, frontmatter, `_learnings.md`, hook, etc.) is defined in the [glossary](https://github.com/derekcedarbaum2/claude-code-setup/blob/main/GLOSSARY.md).
+
+---
+
+## The problem
+
+Once you let an AI agent read and write into a Markdown knowledge base, you've got a new problem: the agent doesn't know what good filing looks like.
+
+It'll create a meeting note in the wrong folder. Skip frontmatter. Make a new `_learnings.md` when one already exists. Save a transcript with no metadata. Append duplicate entries. Drop wikilinks that don't resolve. After a few months the vault is full of structural rot you didn't notice happening.
+
+The fix isn't training the agent to be smart about filing every time. It's encoding the conventions in one place — a `CLAUDE.md` at the vault root that lays down the structure rules, a YAML frontmatter schema every file follows, a hook that auto-archives session transcripts in the right format, and a periodic audit that catches drift before it compounds.
+
+This repo is that conventions layer. It pairs with the memory pattern in [`ai-knowledge-system`](https://github.com/derekcedarbaum2/ai-knowledge-system), the audit tool [`vault-lint`](https://github.com/derekcedarbaum2/vault-lint), and the daily Readwise ingestion in [`note-highlight-indexer`](https://github.com/derekcedarbaum2/note-highlight-indexer). On their own each is useful; together they keep the vault healthy at scale.
 
 Pairs with:
 - [`ai-knowledge-system`](https://github.com/derekcedarbaum2/ai-knowledge-system) — the three-tier persistent-memory pattern this hygiene supports
