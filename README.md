@@ -2,7 +2,7 @@
 
 **Rules and tools that keep an AI agent's Markdown knowledge base from rotting over time.**
 
-> **New to Claude Code?** [Claude Code](https://docs.anthropic.com/claude/code) is Anthropic's command-line AI agent. A "vault" is a folder of Markdown files that the agent reads and writes — typically [Obsidian](https://obsidian.md). Vocabulary used here (vault, frontmatter, `_learnings.md`, hook, etc.) is defined in the [glossary](https://github.com/derekcedarbaum2/claude-code-setup/blob/main/GLOSSARY.md).
+> **New to Claude Code?** [Claude Code](https://docs.anthropic.com/claude/code) is Anthropic's command-line AI agent. A "vault" is a folder of Markdown files that the agent reads and writes — typically [Obsidian](https://obsidian.md). See the [ECOSYSTEM map](https://github.com/derekcedarbaum2/claude-code-setup/blob/main/ECOSYSTEM.md) for the full system overview + onboarding sequence. Vocabulary used here (vault, frontmatter, `_learnings.md`, hook, etc.) is defined in the [glossary](https://github.com/derekcedarbaum2/claude-code-setup/blob/main/GLOSSARY.md).
 
 ---
 
