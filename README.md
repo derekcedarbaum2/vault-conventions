@@ -41,7 +41,7 @@ vault-conventions/
     └── concurrency-lockdir-snippet.sh     ← shared-file pipeline lock pattern
 ```
 
-Six files, all opinionated, all useful in isolation.
+Six files plus two standing rules (entity-evidence threshold, ephemeral-file convention), all opinionated, all useful in isolation.
 
 ---
 
@@ -89,7 +89,24 @@ Wire it into `~/.claude/settings.json`:
 }
 ```
 
-### 5. `hooks/concurrency-lockdir-snippet.sh`
+### 5. The entity-evidence-threshold rule
+
+A standing rule for any vault that uses typed-entity folders (People/, Projects/, Companies/, etc.):
+
+> **Don't create an entity file until N independent signals justify it.**
+> Default N = 2. Sources must be distinct (not the same email thread cited twice).
+
+Why it matters: agents over-eagerly scaffold structure ahead of evidence — a People/ folder fills with one-touch contacts, a Projects/ folder fills with concepts that never produced any actual work product. The folder appears active, the graph is mostly noise.
+
+How to apply:
+- For *people* — create `People/<Name>.md` only after 2+ distinct interactions across at least 2 channels (e.g., one email + one meeting; or two meetings on different days).
+- For *projects/ventures* — create the venture folder + `_learnings.md` only when the idea has either (a) a written hypothesis brief, (b) a real conversation about it, or (c) a billable engagement attached.
+- For *organizations* — create `Organizations/<Name>.md` only when ≥2 named contacts at that org appear in your vault.
+- The `vault-lint` audit flags entity folders that fail the threshold (folders containing only stub files with frontmatter and no body) as "premature scaffold."
+
+Codify the threshold in your vault `CLAUDE.md` so the agent doesn't re-scaffold each session.
+
+### 6. `hooks/concurrency-lockdir-snippet.sh`
 
 A pattern, not a hook. Drop into any cron'd shell script that writes to shared vault files (Readwise distill, voice-memo processor, vault auto-archiver) to prevent two runs from racing each other.
 

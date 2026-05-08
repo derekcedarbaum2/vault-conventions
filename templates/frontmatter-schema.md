@@ -7,7 +7,7 @@ Every `.md` file in your vault should open with a frontmatter block. The schema 
 ```yaml
 ---
 title: <document title — short, scannable>
-type: <prd | reference | meeting | cta | research | concept | session | essay | idea>
+type: <prd | reference | meeting | cta | research | concept | session | essay | idea | ephemeral>
 status: <draft | active | approved | archived>
 classification: <public | internal | confidential | unclassified>
 created: YYYY-MM-DD
@@ -36,8 +36,24 @@ What *kind* of document this is. Drives lint rules, agent behavior, and Dataview
 | `session` | An AI agent session archive (auto-written by hooks/skills) |
 | `essay` | Long-form personal writing |
 | `idea` | Early-stage product or business idea, pre-PRD |
+| `ephemeral` | Regenerated derived view (not memory). Examples: `Today.md` (working state aggregator), generated indexes/dashboards. Whole-file overwritten on each regen. Other tools (lint, archive, backup) should treat ephemeral files as transient. |
 
 Add new types only when 3+ documents need them. Otherwise use the closest existing one.
+
+### Ephemeral files — additional conventions
+
+When `type: ephemeral`, also include:
+
+```yaml
+regenerated_by: <skill or script name>     # who regenerates this
+updated: YYYY-MM-DDTHH:MM                  # timestamp, not just date — staleness matters
+```
+
+Hard rules:
+- Ephemeral files are **whole-file overwritten** on each regen. No append-only invariant.
+- Never edit by hand. Anything you'd want to persist belongs in a non-ephemeral file.
+- Lint and archive tooling should **skip** ephemeral files for orphan / stale-link checks (the file's purpose is to be regenerated).
+- Do not commit ephemeral files to a public repo. They contain current operational state.
 
 ### `status` (required, enum)
 Lifecycle state.

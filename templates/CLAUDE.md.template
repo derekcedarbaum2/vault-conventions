@@ -56,7 +56,7 @@ See `frontmatter-schema.md` in this repo. Every `.md` file in the vault should o
 ```yaml
 ---
 title: <document title>
-type: <prd | reference | meeting | cta | research | concept | session | essay | idea>
+type: <prd | reference | meeting | cta | research | concept | session | essay | idea | ephemeral>
 status: <draft | active | approved | archived>
 classification: <public | internal | confidential | unclassified>
 created: YYYY-MM-DD
@@ -92,6 +92,12 @@ Optional fields: `product`, `program`, `related: [[wiki-links]]`, `source`, `own
 - Make small changes (typo fixes, dates, minor reorg) without asking.
 - For structural changes (moving files between folders, merging notes, creating new organizational schemes), describe the plan first.
 - When in doubt, ask.
+
+### Entity-evidence threshold
+Don't create entity files (People/, Organizations/, new venture folders) until at least 2 distinct independent signals justify it. Folders containing only stub frontmatter with no body are flagged by `vault-lint` as premature scaffold. Wait for evidence; let the structure follow the work.
+
+### Ephemeral artifacts
+Files with `type: ephemeral` (e.g., `Today.md`, regenerated dashboards) are whole-file overwritten on each regen — never edit by hand. Lint and archive tools should skip them. They include a `regenerated_by:` field naming the script/skill that owns them. Do not commit ephemeral files to public repos — they hold current operational state.
 
 ### Writing in this vault
 - Match the tone of the folder. Professional folders are professional. Creative folders are raw. Personal folders are private. Don't homogenize.
